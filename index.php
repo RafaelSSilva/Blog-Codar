@@ -1,23 +1,37 @@
 <?php
     require_once("helpers/url.php");
 ?>
+<?php
+    require_once("templates/header.php");
+?>
+    <main>
+        <div id="title-container">
+            <h1>Blog Codar</h1>
+            <p>O seu blog de programação</p>
+        </div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- TEMPLATE DO PROJETO -->
-    <link rel="stylesheet" href="<?= $BASE_URL ?>css/styles.css">
-    
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    
-    <title>Blog Codar</title>
-</head>
-<body>
-    Olá Mundo!
-</body>
-</html>
+        <div id="posts-container">
+            <?php foreach($posts as $post) : ?>
+                <div class="post-box">
+                    <img src="<?= $BASE_URL ?>/img/<?= $post["img"] ?>" alt="<?= $post["title"] ?>">
+                    <h2 class="post-title">
+                        <a href="<?= $BASE_URL ?>/post.php?id=<?= $post["id"]?>"><?= $post["title"] ?></a>
+                    </h2>
+                    <p class="post-description"><?= $post["description"]; ?></p>
+                    <div class="tags-container">
+                        <?php foreach ($post["tags"] as $tag) : ?>
+                                <a href="#"><?= $tag ?></a>
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            <?php    
+                endforeach
+            ?>
+
+
+
+        </div>
+    </main>
+<?php
+    require_once("templates/footer.php");
+?>
